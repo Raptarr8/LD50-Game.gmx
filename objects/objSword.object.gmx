@@ -67,12 +67,10 @@ gotoY = parent.y + lengthdir_y(min(len,point_distance(parent.x,parent.y,mouseX,m
 if(mouse_check_button(mb_left)){
     chargeTimer++;
     image_index+=dtRatio;
-    show_debug_message("hold")
 }else if(!mouse_check_button(mb_left)&amp;&amp;chargeTimer!=0){
     spd = 5+chargeTimer/10
     chargeTimer = 0;
     image_index = 0;
-    show_debug_message(speed);
 }
 if(spd&gt;5){
     spd = clamp(spd-0.1,5,20)

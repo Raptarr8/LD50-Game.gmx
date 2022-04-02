@@ -27,6 +27,8 @@
             <kind>1</kind>
             <string>anchorX = view_xview[0] + view_wview[0]/2;
 anchorY = ystart;
+gotoX = x;
+gotoY = y;
 armLength = 48;
 idealDeltaTime = 0;
 dtRatio = 0;
@@ -34,6 +36,8 @@ spd = 1.5;
 var i = instance_create(x,y,objSword);
 i.parent = self;
 spawnTimer = 0;
+grav = 0.25;
+yspd = 0;
 </string>
           </argument>
         </arguments>
@@ -56,16 +60,32 @@ spawnTimer = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>idealDeltaTime = 1/room_speed*1000000
-dtRatio = delta_time/idealDeltaTime
-x = clamp(x+(spd*dtRatio*(keyboard_check(ord('D'))-keyboard_check(ord('A')))),anchorX-armLength,anchorX+armLength);
-//add jumping
+            <string>idealDeltaTime = 1/room_speed*1000000;
+dtRatio = delta_time/idealDeltaTime;
+if(y&lt;ystart)
+{
+    yspd += grav;
+}
+else
+{
+    yspd = 0;
+    if(keyboard_check(ord('W'))||keyboard_check(vk_space))
+    {
+        yspd = -5;
+    }
+}
+gotoX = x+(spd*dtRatio*(keyboard_check(ord('D'))-keyboard_check(ord('A'))));
+gotoY = clamp(y+yspd*dtRatio,0,ystart);
 
-spawnTimer++
+x = anchorX + lengthdir_x(min(armLength,point_distance(anchorX,anchorY,gotoX,gotoY)),point_direction(anchorX,anchorY,gotoX,gotoY));
+y = anchorY + lengthdir_y(min(armLength,point_distance(anchorX,anchorY,gotoX,gotoY)),point_direction(anchorX,anchorY,gotoX,gotoY));
+
+
+spawnTimer++;
 if(spawnTimer &gt; 120)
 {
     spawnTimer = 0;
-    enemy = choose(objEnemy,objEnemy,objToughEnemy)
+    enemy = choose(objEnemy,objEnemy,objToughEnemy,objSniperEnemy)
     spawn = irandom(2)
     if(spawn == 0){
         i = instance_create(view_xview[0], irandom_range(view_yview[0], view_yview[0]+view_hview[0]), enemy)

@@ -10,6 +10,9 @@
     <sprite>sprites\sprOtherArm</sprite>
     <sprite>sprites\sprAnchor</sprite>
     <sprite>sprites\sprEnemy</sprite>
+    <sprite>sprites\sprSwooperEnemy</sprite>
+    <sprite>sprites\sprSniperEnemy</sprite>
+    <sprite>sprites\sprBullet</sprite>
     <sprite>sprites\sprToughEnemy</sprite>
     <sprite>sprites\sprDot</sprite>
     <sprite>sprites\sprStick</sprite>
@@ -17,13 +20,16 @@
   </sprites>
   <backgrounds name="background">
     <background>background\tstGround</background>
+    <background>background\bgRain</background>
   </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <object>objects\objFadeEffect</object>
     <object>objects\objSword</object>
     <object>objects\objEnemy</object>
+    <object>objects\objSniperEnemy</object>
     <object>objects\objToughEnemy</object>
+    <object>objects\objBullet</object>
     <object>objects\objPlayer</object>
   </objects>
   <rooms name="rooms">
