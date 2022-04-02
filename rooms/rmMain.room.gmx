@@ -52,6 +52,7 @@
   </views>
   <instances>
     <instance objName="objPlayer" x="128" y="128" name="inst_9F9C3FA9" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
+    <instance objName="objWaveController" x="0" y="0" name="inst_24B376A1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
   <tiles>
     <tile bgName="tstGround" x="0" y="144" w="16" h="48" xo="0" yo="0" id="10000028" name="inst_EAFE532F" depth="1000000" locked="0" colour="4294967295" scaleX="1" scaleY="1"/>

@@ -6,7 +6,7 @@
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
-  <maskName>&lt;undefined&gt;</maskName>
+  <maskName>mskPlayer</maskName>
   <events>
     <event eventtype="0" enumb="0">
       <action>
@@ -36,8 +36,9 @@ spd = 1.5;
 var i = instance_create(x,y,objSword);
 i.parent = self;
 spawnTimer = 0;
-grav = 0.25;
+grav = 0.125;
 yspd = 0;
+hp = 3;
 </string>
           </argument>
         </arguments>
@@ -71,21 +72,23 @@ else
     yspd = 0;
     if(keyboard_check(ord('W'))||keyboard_check(vk_space))
     {
-        yspd = -5;
+        yspd = -2.5;
     }
 }
+
 gotoX = x+(spd*dtRatio*(keyboard_check(ord('D'))-keyboard_check(ord('A'))));
 gotoY = clamp(y+yspd*dtRatio,0,ystart);
 
 x = anchorX + lengthdir_x(min(armLength,point_distance(anchorX,anchorY,gotoX,gotoY)),point_direction(anchorX,anchorY,gotoX,gotoY));
-y = anchorY + lengthdir_y(min(armLength,point_distance(anchorX,anchorY,gotoX,gotoY)),point_direction(anchorX,anchorY,gotoX,gotoY));
-
-
+y = anchorY + lengthdir_y(min(armLength+5,point_distance(anchorX,anchorY,gotoX,gotoY)),point_direction(anchorX,anchorY,gotoX,gotoY));
+if(y-anchorY &gt;= armLength &amp;&amp; yspd &lt; 0)
+    yspd -= 0.25;
+/*
 spawnTimer++;
 if(spawnTimer &gt; 120)
 {
     spawnTimer = 0;
-    enemy = choose(objEnemy,objEnemy,objToughEnemy,objSniperEnemy)
+    enemy = choose(objEnemy,objEnemy,objToughEnemy,objSniperEnemy,objSwooperEnemy,objMoleEnemy)
     spawn = irandom(2)
     if(spawn == 0){
         i = instance_create(view_xview[0], irandom_range(view_yview[0], view_yview[0]+view_hview[0]), enemy)
@@ -93,6 +96,35 @@ if(spawnTimer &gt; 120)
         i = instance_create(irandom_range(view_xview[0], view_xview[0]+view_wview[0]), view_yview[0], enemy)
     } else {
         i = instance_create(view_xview[0]+view_wview[0], irandom_range(view_yview[0], view_yview[0]+view_hview[0]), enemy)
+    }
+}
+*/
+
+if(place_meeting(x,y,prtEnemy)||place_meeting(anchorX,anchorY,prtEnemy))
+{
+    show_debug_message("hit");
+    hp--;
+    //if(hp&lt;=0)
+    //{
+    //  game_restart();
+    //}
+    with(instance_place(x,y,prtEnemy))
+    {
+        instance_destroy();
+    }
+    with(instance_place(anchorX,anchorY,prtEnemy))
+    {
+        instance_destroy();
+    }
+    with(prtEnemy)
+    {
+        stunTimer = 150;
+        if(object_index == objBullet)
+            instance_destroy();
+    }
+    with(objWaveController)
+    {
+        stunTimer = 150;
     }
 }
 </string>
@@ -128,6 +160,22 @@ draw_self();
 </string>
           </argument>
         </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="112">
+      <action>
+        <libid>1</libid>
+        <id>331</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_restart_game</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
       </action>
     </event>
   </events>

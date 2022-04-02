@@ -10,13 +10,16 @@
     <sprite>sprites\sprOtherArm</sprite>
     <sprite>sprites\sprAnchor</sprite>
     <sprite>sprites\sprEnemy</sprite>
+    <sprite>sprites\sprMoleEnemy</sprite>
     <sprite>sprites\sprSwooperEnemy</sprite>
     <sprite>sprites\sprSniperEnemy</sprite>
     <sprite>sprites\sprBullet</sprite>
     <sprite>sprites\sprToughEnemy</sprite>
     <sprite>sprites\sprDot</sprite>
     <sprite>sprites\sprStick</sprite>
+    <sprite>sprites\mskPlayer</sprite>
     <sprite>sprites\sprPlayer</sprite>
+    <sprite>sprites\sprHeart</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\tstGround</background>
@@ -27,11 +30,16 @@
     <object>objects\objFadeEffect</object>
     <object>objects\objSword</object>
     <object>objects\objEnemy</object>
+    <object>objects\objSwooperEnemy</object>
+    <object>objects\objMoleEnemy</object>
     <object>objects\objSniperEnemy</object>
     <object>objects\objToughEnemy</object>
     <object>objects\objBullet</object>
     <object>objects\objPlayer</object>
+    <object>objects\prtEnemy</object>
+    <object>objects\objWaveController</object>
   </objects>
+  <timelines name="timelines"/>
   <rooms name="rooms">
     <room>rooms\rmMain</room>
   </rooms>

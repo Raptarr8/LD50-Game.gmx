@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>prtEnemy</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spd = random_range(0.25,0.5)
+            <string>event_inherited();
+spd = random_range(0.25,0.5)
 shootTimer = 0;
 image_speed = 0;
 </string>
@@ -50,10 +51,11 @@ image_speed = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>idealDeltaTime = 1/room_speed*1000000
-dtRatio = delta_time/idealDeltaTime
+            <string>event_inherited();
 if(instance_exists(objPlayer))
 {
+    if(stunTimer &lt;= 0)
+    {
     if(point_distance(x,y,objPlayer.x,objPlayer.y) &gt; 128)
     {
         move_towards_point(objPlayer.x,objPlayer.y,spd*dtRatio)
@@ -86,7 +88,7 @@ if(instance_exists(objPlayer))
             shootTimer = 0;
         }
     }
-    
+    }
     if(instance_exists(objSword))
     {
         with(objSword)

@@ -5,7 +5,7 @@
   <visible>-1</visible>
   <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>&lt;undefined&gt;</parentName>
+  <parentName>prtEnemy</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
     <event eventtype="0" enumb="0">
@@ -25,7 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>spd = random_range(0.25,1.5)
+            <string>event_inherited();
+spd = random_range(0.25,1)
 </string>
           </argument>
         </arguments>
@@ -48,11 +49,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>idealDeltaTime = 1/room_speed*1000000
-dtRatio = delta_time/idealDeltaTime
+            <string>event_inherited();
 if(instance_exists(objPlayer))
 {
-    move_towards_point(objPlayer.anchorX,objPlayer.anchorY,spd*dtRatio)
+    if(stunTimer &lt;= 0)
+        move_towards_point(objPlayer.anchorX,objPlayer.anchorY,spd*dtRatio)
     if(instance_exists(objSword))
     {
         with(objSword)
