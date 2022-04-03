@@ -10,6 +10,8 @@
     <sprite>sprites\sprOtherArm</sprite>
     <sprite>sprites\sprAnchor</sprite>
     <sprite>sprites\sprEnemy</sprite>
+    <sprite>sprites\sprScythe</sprite>
+    <sprite>sprites\sprDeath</sprite>
     <sprite>sprites\sprMoleEnemy</sprite>
     <sprite>sprites\sprSwooperEnemy</sprite>
     <sprite>sprites\sprSniperEnemy</sprite>
@@ -25,16 +27,21 @@
     <background>background\tstGround</background>
     <background>background\bgRain</background>
   </backgrounds>
-  <paths name="paths"/>
+  <paths name="paths">
+    <path>paths\pthScytheCCW</path>
+    <path>paths\pthScytheCW</path>
+  </paths>
   <objects name="objects">
     <object>objects\objFadeEffect</object>
     <object>objects\objSword</object>
     <object>objects\objEnemy</object>
+    <object>objects\objDeath</object>
     <object>objects\objSwooperEnemy</object>
     <object>objects\objMoleEnemy</object>
     <object>objects\objSniperEnemy</object>
     <object>objects\objToughEnemy</object>
     <object>objects\objBullet</object>
+    <object>objects\objScythe</object>
     <object>objects\objPlayer</object>
     <object>objects\prtEnemy</object>
     <object>objects\objWaveController</object>

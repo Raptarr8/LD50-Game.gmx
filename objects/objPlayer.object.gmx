@@ -38,7 +38,7 @@ i.parent = self;
 spawnTimer = 0;
 grav = 0.125;
 yspd = 0;
-hp = 3;
+hp = 5;
 </string>
           </argument>
         </arguments>
@@ -149,7 +149,11 @@ if(place_meeting(x,y,prtEnemy)||place_meeting(anchorX,anchorY,prtEnemy))
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(sprAnchor,0,anchorX,anchorY);
+            <string>for(i=0;i&lt;hp;i++)
+{
+    draw_sprite(sprHeart,0,i*8,0);
+}
+draw_sprite(sprAnchor,0,anchorX,anchorY);
 var radius = point_distance(x,y,anchorX,anchorY)
 for (var j = 0; j &lt; radius; j++)
 {
