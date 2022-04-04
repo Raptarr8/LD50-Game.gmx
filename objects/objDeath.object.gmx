@@ -207,7 +207,7 @@ room_goto(rmResults)
 else
 {
     deathTimer++;
-    image_alpha = deathTimer/360;
+    image_alpha = 1-deathTimer/360;
     if(deathTimer&gt;360)
     {
         instance_destroy();
