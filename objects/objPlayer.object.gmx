@@ -39,6 +39,8 @@ spawnTimer = 0;
 grav = 0.125;
 yspd = 0;
 hp = 5;
+iframes = 0;
+image_speed = 0;
 </string>
           </argument>
         </arguments>
@@ -63,6 +65,7 @@ hp = 5;
             <kind>1</kind>
             <string>idealDeltaTime = 1/room_speed*1000000;
 dtRatio = delta_time/idealDeltaTime;
+iframes--
 if(y&lt;ystart)
 {
     yspd += grav;
@@ -99,15 +102,36 @@ if(spawnTimer &gt; 120)
     }
 }
 */
+if(x-mouse_x!=0)
+    image_xscale = -sign(x-mouse_x);
 
-if(place_meeting(x,y,prtEnemy)||place_meeting(anchorX,anchorY,prtEnemy))
+if(abs(keyboard_check(ord('D'))-keyboard_check(ord('A'))))
+{
+    image_index += 0.1*dtRatio;
+}
+else
+{
+    image_index = 0;
+}
+
+if((place_meeting(x,y,prtEnemy)||place_meeting(x,y,objScythe)||place_meeting(anchorX,anchorY,prtEnemy))&amp;&amp;iframes&lt;=0)
 {
     show_debug_message("hit");
+    audio_play_sound(sfxHurt,30,false);
     hp--;
-    //if(hp&lt;=0)
-    //{
-    //  game_restart();
-    //}
+    iframes = 150;
+    for(var i = 0; i &lt; 4; i++)
+    {
+        var j = instance_create(hp*8+4,4,objHeartBreak);
+        j.image_index = i;
+        j.vspeed = -1*(i%2==1);
+        j.hspeed = i-1;
+    }
+    if(hp&lt;=0)
+    {
+      room_goto(rmResults);
+      audio_play_sound(sfxLightning2,50,false);
+    }
     with(instance_place(x,y,prtEnemy))
     {
         instance_destroy();
@@ -153,13 +177,13 @@ if(place_meeting(x,y,prtEnemy)||place_meeting(anchorX,anchorY,prtEnemy))
 {
     draw_sprite(sprHeart,0,i*8,0);
 }
-draw_sprite(sprAnchor,0,anchorX,anchorY);
 var radius = point_distance(x,y,anchorX,anchorY)
 for (var j = 0; j &lt; radius; j++)
 {
     var p = j / radius;
     draw_sprite_ext(sprArm, 0, round(x * (1 - p) + anchorX * p), floor(y * (1 - p) + anchorY * p),1,1,point_direction(anchorX,anchorY,x,y),c_white,1);
 }
+draw_sprite(sprAnchor,0,anchorX,anchorY);
 draw_self();
 </string>
           </argument>

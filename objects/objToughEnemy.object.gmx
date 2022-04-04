@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 spd = random_range(0.25,0.5)
+animTimer = 0;
 </string>
           </argument>
         </arguments>
@@ -52,6 +53,14 @@ spd = random_range(0.25,0.5)
             <string>event_inherited();
 if(instance_exists(objPlayer))
 {
+    animTimer++;
+    if(animTimer &gt; 45/2)
+    {
+        animTimer = 0;
+        var i = instance_create(x,y,objToughLightning);
+        i.parent = self;
+        i.image_angle = irandom(360);
+    }
     if(stunTimer &lt;= 0)
         move_towards_point(objPlayer.anchorX,objPlayer.anchorY,spd*dtRatio)
     if(instance_exists(objSword))

@@ -2,7 +2,7 @@
 <object>
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -34,6 +34,7 @@ enemyList[0] = objEnemy;
 enemyList[1] = objSniperEnemy;
 enemyList[2] = objMoleEnemy;
 enemyList[3] = objSwooperEnemy;
+global.isWin = 0;
 </string>
           </argument>
         </arguments>
@@ -58,6 +59,7 @@ enemyList[3] = objSwooperEnemy;
             <kind>1</kind>
             <string>idealDeltaTime = 1/room_speed*1000000;
 dtRatio = delta_time/idealDeltaTime;
+global.wave = wave;
 if(stunTimer &gt; 0)
 {
     stunTimer-=dtRatio
@@ -160,6 +162,8 @@ else
                 with(objPlayer)
                 {
                     hp++;
+                    audio_play_sound(sfxLightning2,50,false);
+                    
                 }
             }
             break;
@@ -257,6 +261,7 @@ else
                 with(objPlayer)
                 {
                     hp++;
+                    audio_play_sound(sfxLightning2,50,false);
                 }
             }
             break;
@@ -289,6 +294,7 @@ else
             {
                 waveTimer = 0;
                 wave++;
+                audio_play_sound(sfxLightning2,50,false);
             }
             break;
         case 11:
@@ -368,6 +374,7 @@ else
                 with(objPlayer)
                 {
                     hp++;
+                    audio_play_sound(sfxLightning2,50,false);
                 }
             }
             break;
@@ -450,6 +457,7 @@ else
                 with(objPlayer)
                 {
                     hp++;
+                    audio_play_sound(sfxLightning2,50,false);
                 }
             }
             break;
@@ -467,7 +475,7 @@ else
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="7" enumb="2">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -484,8 +492,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_set_color(c_white)
-draw_text(0,0,string(wave) + " - " + string(waveTimer));
+            <string>global.wave = 0;
 </string>
           </argument>
         </arguments>

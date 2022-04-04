@@ -25,7 +25,9 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>stunTimer = 0;
+            <string>isDead = false;
+deathTimer = 0;
+stunTimer = 0;
 hp = 10;
 phase = 0;
 attackTimer = 0;
@@ -54,6 +56,8 @@ iframes = 0;
           <argument>
             <kind>1</kind>
             <string>show_debug_message("death has died")
+global.isWin = 1;
+room_goto(rmResults)
 </string>
           </argument>
         </arguments>
@@ -76,124 +80,137 @@ iframes = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>idealDeltaTime = 1/room_speed*1000000
-dtRatio = delta_time/idealDeltaTime
-if(stunTimer &gt; 0)
+            <string>if(!isDead)
 {
-    stunTimer-=dtRatio;
-    hspeed = 0;
-    vspeed = 0;
-}
-if(instance_exists(objPlayer))
-{
-    if(stunTimer&lt;=0)
+    idealDeltaTime = 1/room_speed*1000000
+    dtRatio = delta_time/idealDeltaTime
+    if(stunTimer &gt; 0)
     {
-    attackTimer++;
-    iframes--;
-    if(iframes &gt; 0)
-    {
-        image_index = 1;
+        stunTimer-=dtRatio;
+        hspeed = 0;
+        vspeed = 0;
     }
-    else
+    if(instance_exists(objPlayer))
     {
-        image_index = 0;
-    }
-    if(attackTimer == 1)
-    {
-        show_debug_message(string(phase))
-    }
-        switch(phase)
+        if(stunTimer&lt;=0)
         {
-            case 0:
-                if(x&gt;view_xview[0] + 32 &amp;&amp; !instance_exists(objScythe))
-                {
-                    x-=3*dtRatio;
-                }
-                else if(!hasFired)
-                {
-                    var i = instance_create(x,y,objScythe);
-                    i.path = pthScytheCCW;
-                    hasFired = true;
-                }
-                if(!instance_exists(objScythe)&amp;&amp;hasFired)
-                {
-                    attackTimer = 0;
-                    phase = choose(1,2)
-                    hasFired = false;
-                }
-                break;
-            case 1:
-                if(x&lt;view_xview[0]+view_wview[0] - 32 &amp;&amp; !instance_exists(objScythe))
-                {
-                    x+=3*dtRatio;
-                }
-                else if(!hasFired)
-                {
-                    var i = instance_create(x,y,objScythe);
-                    i.path = pthScytheCW;
-                    hasFired = true;
-                }
-                if(!instance_exists(objScythe)&amp;&amp;hasFired)
-                {
-                    attackTimer = 0;
-                    phase = choose(0,2)
-                    hasFired = false;
-                }
-                break;
-            case 2:
-                if(abs(x-(view_xview[0]+view_wview[0]/2))&gt;2)
-                {
-                    x += -3*dtRatio*sign(x-(view_xview[0]+view_wview[0]/2));
-                }
-                else if(hasFired = false)
-                {
-                    hasFired = true;
-                    attackTimer = 0;
-                }
-                else
-                {
-                    if(attackTimer%5=0)
+        attackTimer++;
+        iframes--;
+        if(iframes &gt; 0)
+        {
+            image_index = 1;
+        }
+        else
+        {
+            image_index = 0;
+        }
+        if(attackTimer == 1)
+        {
+            show_debug_message(string(phase))
+        }
+            switch(phase)
+            {
+                case 0:
+                    if(x&gt;view_xview[0] + 32 &amp;&amp; !instance_exists(objScythe))
                     {
-                        var i = instance_create(x-8,y-16,objBullet);
-                        var j = instance_create(x+8,y-16,objBullet);
-                        i.direction = attackTimer+180;
-                        j.direction = -attackTimer;
-                        i.spd = 2;
-                        j.spd = 2;
+                        x-=3*dtRatio;
                     }
-                    if(attackTimer &gt; 75)
+                    else if(!hasFired)
+                    {
+                        var i = instance_create(x,y,objScythe);
+                        i.path = pthScytheCCW;
+                        hasFired = true;
+                    }
+                    if(!instance_exists(objScythe)&amp;&amp;hasFired)
                     {
                         attackTimer = 0;
-                        phase = choose(0,1)
+                        phase = choose(1,2)
                         hasFired = false;
                     }
-                }
-        }
-    }
-    if(instance_exists(objSword) &amp;&amp; iframes &lt;= 0)
-    {
-        with(objSword)
-        {
-            if(collision_line(x,y,x+lengthdir_x(24,image_angle),y+lengthdir_y(24,image_angle),other,false,false))
-            {
-                if(spd&gt;5)
-                {
-                    with(other)
+                    break;
+                case 1:
+                    if(x&lt;view_xview[0]+view_wview[0] - 32 &amp;&amp; !instance_exists(objScythe))
                     {
-                        hp--;
-                        iframes=120;
-                        if(hp&lt;0)
+                        x+=3*dtRatio;
+                    }
+                    else if(!hasFired)
+                    {
+                        var i = instance_create(x,y,objScythe);
+                        i.path = pthScytheCW;
+                        hasFired = true;
+                    }
+                    if(!instance_exists(objScythe)&amp;&amp;hasFired)
+                    {
+                        attackTimer = 0;
+                        phase = choose(0,2)
+                        hasFired = false;
+                    }
+                    break;
+                case 2:
+                    if(abs(x-(view_xview[0]+view_wview[0]/2))&gt;2)
+                    {
+                        x += -3*dtRatio*sign(x-(view_xview[0]+view_wview[0]/2));
+                    }
+                    else if(hasFired = false)
+                    {
+                        hasFired = true;
+                        attackTimer = 0;
+                    }
+                    else
+                    {
+                        if(attackTimer%5=0)
                         {
-                            instance_destroy();
+                            var i = instance_create(x-8,y-16,objBullet);
+                            var j = instance_create(x+8,y-16,objBullet);
+                            i.direction = attackTimer+180;
+                            j.direction = -attackTimer;
+                            i.spd = 2;
+                            j.spd = 2;
+                        }
+                        if(attackTimer &gt; 75)
+                        {
+                            attackTimer = 0;
+                            phase = choose(0,1)
+                            hasFired = false;
                         }
                     }
-                }
-                else
+            }
+        }
+        if(instance_exists(objSword) &amp;&amp; iframes &lt;= 0)
+        {
+            with(objSword)
+            {
+                if(collision_line(x,y,x+lengthdir_x(24,image_angle),y+lengthdir_y(24,image_angle),other,false,false))
                 {
-                    
+                    if(spd&gt;5)
+                    {
+                        with(other)
+                        {
+                            hp--;
+                            iframes=120;
+                            if(hp&lt;0)
+                            {
+                                isDead = true;
+                                audio_play_sound(sfxLightning,50,false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        
+                    }
                 }
             }
         }
+    }
+}
+else
+{
+    deathTimer++;
+    image_alpha = deathTimer/360;
+    if(deathTimer&gt;360)
+    {
+        instance_destroy();
     }
 }
 </string>

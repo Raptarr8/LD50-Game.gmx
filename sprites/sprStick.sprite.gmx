@@ -7,10 +7,10 @@
   <coltolerance>0</coltolerance>
   <sepmasks>0</sepmasks>
   <bboxmode>0</bboxmode>
-  <bbox_left>0</bbox_left>
+  <bbox_left>4</bbox_left>
   <bbox_right>31</bbox_right>
-  <bbox_top>0</bbox_top>
-  <bbox_bottom>15</bbox_bottom>
+  <bbox_top>4</bbox_top>
+  <bbox_bottom>11</bbox_bottom>
   <HTile>0</HTile>
   <VTile>0</VTile>
   <TextureGroups>
@@ -22,7 +22,5 @@
   <frames>
     <frame index="0">images\sprStick_0.png</frame>
     <frame index="1">images\sprStick_1.png</frame>
-    <frame index="2">images\sprStick_2.png</frame>
-    <frame index="3">images\sprStick_3.png</frame>
   </frames>
 </sprite>

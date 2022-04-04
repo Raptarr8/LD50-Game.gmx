@@ -4,13 +4,22 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\sfxJump</sound>
+    <sound>sound\sfxHurt</sound>
+    <sound>sound\sfxKill</sound>
+    <sound>sound\sfxLightning</sound>
+    <sound>sound\sfxLightning2</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\sprArm</sprite>
     <sprite>sprites\sprOtherArm</sprite>
+    <sprite>sprites\sprCrack</sprite>
     <sprite>sprites\sprAnchor</sprite>
+    <sprite>sprites\sprDeathParticle</sprite>
     <sprite>sprites\sprEnemy</sprite>
     <sprite>sprites\sprScythe</sprite>
+    <sprite>sprites\mskScythe</sprite>
     <sprite>sprites\sprDeath</sprite>
     <sprite>sprites\sprMoleEnemy</sprite>
     <sprite>sprites\sprSwooperEnemy</sprite>
@@ -18,19 +27,30 @@
     <sprite>sprites\sprBullet</sprite>
     <sprite>sprites\sprToughEnemy</sprite>
     <sprite>sprites\sprDot</sprite>
+    <sprite>sprites\sprToughLightining</sprite>
     <sprite>sprites\sprStick</sprite>
     <sprite>sprites\mskPlayer</sprite>
     <sprite>sprites\sprPlayer</sprite>
     <sprite>sprites\sprHeart</sprite>
+    <sprite>sprites\sprButton</sprite>
+    <sprite>sprites\sprBrokenHeart</sprite>
+    <sprite>sprites\sprWaterDroplet</sprite>
+    <sprite>sprites\sprTitle</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\tstGround</background>
     <background>background\bgRain</background>
+    <background>background\tstGroundNew</background>
+    <background>background\bgWoder</background>
+    <background>background\background4</background>
   </backgrounds>
   <paths name="paths">
     <path>paths\pthScytheCCW</path>
     <path>paths\pthScytheCW</path>
   </paths>
+  <fonts name="fonts">
+    <font>fonts\fntEIGHTBIT_WONDER</font>
+  </fonts>
   <objects name="objects">
     <object>objects\objFadeEffect</object>
     <object>objects\objSword</object>
@@ -40,15 +60,24 @@
     <object>objects\objMoleEnemy</object>
     <object>objects\objSniperEnemy</object>
     <object>objects\objToughEnemy</object>
+    <object>objects\objToughLightning</object>
     <object>objects\objBullet</object>
     <object>objects\objScythe</object>
     <object>objects\objPlayer</object>
+    <object>objects\objCrack</object>
     <object>objects\prtEnemy</object>
     <object>objects\objWaveController</object>
+    <object>objects\objResultsController</object>
+    <object>objects\objButton</object>
+    <object>objects\objHeartBreak</object>
+    <object>objects\objTitle</object>
   </objects>
   <timelines name="timelines"/>
   <rooms name="rooms">
+    <room>rooms\rmTitleScreen</room>
+    <room>rooms\rmAbout</room>
     <room>rooms\rmMain</room>
+    <room>rooms\rmResults</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>

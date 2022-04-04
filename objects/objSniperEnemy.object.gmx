@@ -56,9 +56,9 @@ if(instance_exists(objPlayer))
 {
     if(stunTimer &lt;= 0)
     {
-    if(y&lt;objPlayer.y)
+    if(y&gt;objPlayer.y)
     {
-        y+=spd*dtRatio;
+        y-=spd*dtRatio;
     }
     if(point_distance(x,y,objPlayer.x,objPlayer.y) &gt; 128)
     {
