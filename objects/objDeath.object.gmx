@@ -188,6 +188,7 @@ room_goto(rmResults)
                         {
                             hp--;
                             iframes=120;
+                            audio_play_sound(sfxKill,50,false);
                             if(hp&lt;0)
                             {
                                 isDead = true;

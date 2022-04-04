@@ -52,7 +52,6 @@
   </views>
   <instances>
     <instance objName="objButton" x="64" y="144" name="inst_FAD0D2D2" locked="0" code="destRoom = rmMain;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
-    <instance objName="objButton" x="64" y="192" name="inst_B69FFBFB" locked="0" code="destRoom = -1;&#xA;image_index = 2;&#xA;" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objCrack" x="128" y="128" name="inst_32F4DCD4" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
     <instance objName="objTitle" x="128" y="48" name="inst_073DC2C1" locked="0" code="" scaleX="1" scaleY="1" colour="4294967295" rotation="0"/>
   </instances>
